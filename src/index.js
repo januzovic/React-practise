@@ -65,33 +65,27 @@ function Header() {
   );
 }
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
   return (
     <main className='menu'>
       <h2 className=''>Our Menu</h2>
 
-      <ul className='pizzas'>
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
-      {/* <Pizza
-        name='Pizza Prosciutto'
-        ingredients='Tomato, mozarella, ham, aragula, and burrata cheese'
-        photoName='pizzas/prosciutto.jpg'
-        price={10}
-      />
-      <Pizza
-        name='Pizza Salamino'
-        ingredients='Tomato, mozarella, and pepperoni'
-        photoName='pizzas/salamino.jpg'
-        price={15}
-      /> */}
+      {numPizzas > 0 ? (
+        <ul className='pizzas'>
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later :)</p>
+      )}
     </main>
   );
 }
 
 function Pizza(props) {
-  console.log(props);
   return (
     <li className='pizza'>
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -112,7 +106,16 @@ function Footer() {
 
   return (
     <footer className='footer'>
-      {new Date().toLocaleTimeString()}. We're currently open
+      {isOpen ? (
+        <div className='order'>
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
+          <button className='btn'>Order</button>
+        </div>
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 amd {closeHour}:00
+        </p>
+      )}
     </footer>
   );
 }
