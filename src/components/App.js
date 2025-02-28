@@ -11,11 +11,11 @@ import Stats from './Stats';
 export default function App() {
   const [items, setItems] = useState([]);
   function handleAddItems(item) {
-    setItems((items) => [...items, item]);
+    setItems((items) => [...items, item]); // Adding item to items array
   }
 
   function handleDeleteItem(id) {
-    setItems((items) => items.filter((item) => item.id !== id));
+    setItems((items) => items.filter((item) => item.id !== id)); // Removing item from items array
   }
 
   function handleToggleItem(id) {
